@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4efe9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 80px;
+            background: #ded3c2;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar img {
+            width: 50px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .sidebar-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            font-size: 24px;
+        }
+        .sidebar-icons a {
+            text-decoration: none;
+            color: #333;
+            font-size: 24px;
+        }
+        .slider {
+            position: relative;
+            max-width: 100%;
+            margin-left: 100px;
+            overflow: hidden;
+            width: calc(100% - 100px);
+        }
+        .slides {
+            display: flex;
+            width: 300%;
+            transition: transform 1s ease-in-out;
+        }
+        .slide {
+            width: 100%;
+            position: relative;
+        }
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        .caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="user.jpg" alt="User Profile">
+        <div class="sidebar-icons">
+            <a href="index.html">📚</a>
+            <a href="favorites.html">⭐</a>
+            <a href="chat.html">💬</a>
+        </div>
+    </div>
+    <div class="slider">
+        <div class="slides">
+            <div class="slide">
+                <img src="./Teaching self-regulation could help young students learn better.jpeg" alt="Slide 1">
+                <div class="caption">Explore a world of books</div>
+            </div>
+            <div class="slide">
+                <img src="./" alt="Slide 2">
+                <div class="caption">Trade your books easily</div>
+            </div>
+            <div class="slide">
+                <img src="slide3.jpg" alt="Slide 3">
+                <div class="caption">Connect with fellow readers</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let index = 0;
+        function showNextSlide() 
+            const slides = document.querySelector(".slides");
+            index = (index + 1) % 3;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+        }
+        setInterval(showNextSlide, 3000);
+    </script>
+</body>
+</html>

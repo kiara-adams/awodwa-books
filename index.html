@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Exchange</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            background: #f4efe8;
+            margin: 0;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 80px;
+            background: #e0d4c3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            height: 100vh;
+            justify-content: space-between;
+        }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            background: #ccc;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .nav-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            margin: 10px 0;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        .nav-btn.active {
+            color: #d18b52;
+        }
+        nav {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        main {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 10px;
+            border-radius: 25px;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            padding: 10px;
+        }
+        .search-btn {
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        .categories {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .category {
+            background: #e0d4c3;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .category.active {
+            background: #d18b52;
+            color: white;
+        }
+        .popular {
+            margin-top: 20px;
+        }
+        .books {
+            display: flex;
+            gap: 15px;
+        }
+        .book {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .book img {
+            width: 100px;
+            height: 150px;
+            border-radius: 5px;
+        }
+        .title {
+            font-weight: bold;
+        }
+        .author {
+            color: #d18b52;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile-pic"></div>
+        <nav>
+            <a href="home.html" class="nav-btn active">🏠</a>
+            <a href="favorites.html" class="nav-btn">❤️</a>
+            <a href="library.html" class="nav-btn">📚</a>
+            <a href="settings.html" class="nav-btn">⚙️</a>
+        </nav>
+    </div>
+    <main>
+        <header>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for books">
+                <button class="search-btn">Search</button>
+            </div>
+        </header>
+        <section class="categories">
+            <button class="category active">📖 All</button>
+            <button class="category">💡 eBooks</button>
+            <button class="category">🔥 New</button>
+            <button class="category">🏆 Bestsellers</button>
+            <button class="category">🎧 Audiobooks</button>
+            <button class="category">📖 Fiction</button>
+            <button class="category">💕 Romance</button>
+            <button class="category">🧙 Fantasy</button>
+            <button class="category">📚 Manga</button>
+        </section>
+        <section class="popular">
+            <h2>Popular</h2>
+            <div class="books">
+                <div class="book">
+                    <img src="./Download_Old_book_clipart_design_illustration_for_free-removebg-preview.png" alt="Fairy Tale">
+                    <p class="title">Fairy Tale</p>
+                    <p class="author">Stephen King</p>
+                </div>
+                <div class="book">
+                    <img src="./Download_Old_book_clipart_design_illustration_for_free__1_-removebg-preview.png" alt="Never After">
+                    <p class="title">Never After</p>
+                    <p class="author">Stephanie Garber</p>
+                </div>
+                <div class="book">
+                    <img src="./Download_Old_book_clipart_design_illustration_for_free__2_-removebg-preview.png" alt="Klara and the Sun">
+                    <p class="title">Klara and the Sun</p>
+                    <p class="author">Kazuo Ishiguro</p>
+                </div>
+                <div class="book">
+                    <img src="./Download_Old_book_clipart_design_illustration_for_free__2_-removebg-preview.png" alt="Klara and the Sun">
+                    <p class="title">Klara and the Sun</p>
+                    <p class="author">Kazuo Ishiguro</p>
+                </div>
+                <div class="book">
+                    <img src="./Download_Old_book_clipart_design_illustration_for_free__2_-removebg-preview.png" alt="Klara and the Sun">
+                    <p class="title">Klara and the Sun</p>
+                    <p class="author">Kazuo Ishiguro</p>
+                </div>
+                <div class="book">
+                    <img src="./Download_Old_book_clipart_design_illustration_for_free__2_-removebg-preview.png" alt="Klara and the Sun">
+                    <p class="title">Klara and the Sun</p>
+                    <p class="author">Kazuo Ishiguro</p>
+                </div>
+                <div class="book">
+                    <img src="book4.jpg" alt="Mist and Fury">
+                    <p class="title">Mist and Fury</p>
+                    <p class="author">Sarah J. Maas</p>
+                </div>
+                <div class="book">
+                    <img src="book5.jpg" alt="Hamnet">
+                    <p class="title">Hamnet</p>
+                    <p class="author">Maggie O'Farrell</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
