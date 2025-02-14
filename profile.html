@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3e8d9;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        .sidebar {
+            width: 80px;
+            background: #e0d4c3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            height: 100vh;
+            justify-content: space-between;
+        }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            background: #ccc;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .nav-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            margin: 10px 0;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        .nav-btn.active {
+            color: #d18b52;
+        }
+        nav {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        main {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .sidebar-1 {
+            border-radius: 8%;
+            width: 250px;
+            height: 98vh;
+
+            padding-right: 100px;
+            background: #d8c4b6;
+            padding: 27px;
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+            gap: 30px;
+        }
+       
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: url('default.jpg') center/cover;
+            position: relative;
+        }
+        .profile-pic input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .input-field, .button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            padding-top: 30px;
+            
+            border-radius: 20px;
+            background: #fff;
+            text-align: center;
+            font-size: 16px;
+        }
+        .button {
+           
+            cursor: pointer;
+            background: #e1b382;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            background: #f3e8d9;
+            border-radius: 20px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #e1b382;
+            padding: 15px;
+            border-radius: 20px;
+        }
+        .space{
+            width: 20px;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 12px;
+            border-radius: 20px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .search-bar input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+        }
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        .book-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        .book-item img {
+            width: 80px;
+            height: 100px;
+        }
+        .book-item strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .book-item small {
+            font-size: 12px;
+            color: #555;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <!-- <a href="./profile.html"> -->
+        <!-- <div class="profile-pic">
+        </div></a> -->
+        <nav>
+            <a href="home.html" class="nav-btn active">🏠</a>
+            <a href="favorites.html" class="nav-btn">❤️</a>
+            <a href="library.html" class="nav-btn">📚</a>
+            <a href="settings.html" class="nav-btn">⚙️</a>
+        </nav>
+    </div>
+    <div class="space"></div>
+    <div class="sidebar-1">
+        <div class="profile-pic">
+            <input type="file" id="profilePicUpload" accept="image/*">
+        </div>
+        <input type="text" id="userName" class="input-field" placeholder="NAME">
+        <input type="text" id="userSurname" class="input-field" placeholder="Surname">
+        <input type="email" id="userEmail" class="input-field" placeholder="Email">
+        <button class="button" onclick="showAddBookModal()">add book</button>
+        <button class="button" onclick="showUploads()">uploads</button>
+    </div>
+    <div class="content">
+        <div class="navbar">
+            <div class="search-bar">
+                <input type="text" placeholder="search uploads" id="searchBooks">
+            </div>
+        </div>
+        <div class="book-list" id="bookList"></div>
+    </div>
+    <script>
+        document.getElementById('profilePicUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelector('.profile-pic').style.backgroundImage = `url(${e.target.result})`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        let books = [];
+
+        function showAddBookModal() {
+            const bookName = prompt("Enter book name:");
+            const bookAuthor = prompt("Enter author name:");
+            const bookCover = 'book-cover.png';
+            if (bookName && bookAuthor) {
+                books.push({ name: bookName, author: bookAuthor, cover: bookCover });
+                updateBookList();
+            }
+        }
+
+        function updateBookList() {
+            const bookList = document.getElementById('bookList');
+            bookList.innerHTML = '';
+            books.forEach(book => {
+                const bookItem = document.createElement('div');
+                bookItem.classList.add('book-item');
+                bookItem.innerHTML = `
+                    <img src="${book.cover}" alt="Book Cover">
+                    <strong>${book.name}</strong>
+                    <small>${book.author}</small>
+                `;
+                bookList.appendChild(bookItem);
+            });
+        }
+
+        function showUploads() {
+            updateBookList();
+        }
+    </script>
+</body>
+</html>
